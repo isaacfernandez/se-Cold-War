@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Nuclear World</title>
+<style>
+
+</style>
+<script src="http://code.jquery.com/jquery-2.0.3.min.js"></script>
+<script>
+
+function listCallback(data){
+	$('#gamesGoHere').html(data);
+}
+
+function getGames() {
+console.log("request received");
+  var url = '/getGames';
+  
+  $.get(url, null, listCallback);
+  
+}
+</script>
+
+</head>
+
+<body>
+	Create a game lobby
+	<form action="/createLobby" method="post">
+		Game Name: <input type="text" name="GameName" value="Fun Game"><br>
+		Game Speed: <input type="number" name="GameSpeed" value="10"><br>
+				<input type="submit" value="Submit">
+	</form>
+<button type="button" onclick="getGames()">Get List of Games</button>
+	<div id="gamesGoHere">
+	
+	</div>
+	
+		
+</body>
+</html><!-- 
+
+	Username: <input type="text" name="UserName" value="Mickey"><br>
+		Team name: <input type="text" name="TeamName" value="Red"><br>
+		-->

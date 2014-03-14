@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Cold War</title>
+<script src="socket.io/socket.io.js"></script>
+<script src="js/ThreeJS/build/three.js"></script>
+<script src="js/ThreeJS/build/TrackballControls.js"></script>
+<script src="js/ThreeJS/build/Detector.js"></script>
+<script src="js/ThreeJS/build/stats.min.js"></script>
+<script src="js/ThreeJS/src/loaders/ColladaLoader.js"></script>
+<script src="js/ThreeJS/src/extras/Lines.js"></script>
+<script src="js/ThreeJS/src/extras/ParticleEngine.js"></script>
+<script src="js/ThreeJS/src/extras/ParticleEngineExamples.js"></script>
+<script src="js/Jquery/DAT.GUI.min.js"></script>
+<script src="js/Game/main.js"></script>
+<script src="js/Game/htmlHandler.js"></script>
+<script src="js/Game/Factory.js"></script>
+<script src="js/Game/textInterface.js"></script>
+<script src="js/Jquery/jquery.min.map"></script>
+
+<link href = "multimedia/style.css" type="text/css" rel="stylesheet">
+<link rel="shortcut icon" href="multimedia/images/hazard.ico">
+
+<script id="vertexShaderAtmosphere" type="x-shader/x-vertex">
+	varying vec3 vNormal;
+	void main() {
+ 	   vNormal = normalize( normalMatrix * normal );
+   	   gl_Position = projectionMatrix * modelViewMatrix * vec4( position, 1.0 );
+	}
+</script>
+
+<script id="fragmentShaderAtmosphere" type="x-shader/x-vertex"> 
+	uniform float c;
+	uniform float p;
+	varying vec3 vNormal;
+	void main() {
+		float intensity = pow( c - dot( vNormal, vec3( 0.0, 0.0, 1.0 ) ), p ); 
+		gl_FragColor = vec4( 1.0, 1.0, 1.0, 1.0 ) * intensity;
+	}
+</script>
+</head>
+
+<body onload="load()">
+	<div id="loading">	
+		<video id="video"><!--controls autoplay-->
+ 			<source src="multimedia/vid/duckandcover.mp4" type="video/mp4">
+		</video>
+		<div id="loadingDiv" onclick="start();">Preparing for war..</div>	
+	</div>
+	<div id ="lobby">
+		LOBBY
+		<form action="/createLobby" method="post" target="hidden">
+			Game Name: <input type="text" name="GameName" value="Fun Game"><br>
+			Game Speed: <input type="number" name="GameSpeed" value="10"><br>
+			<input type="submit" value="Submit">
+		</form>
+	</div>
+	<div id="gamer">
+		<div id="ConnectorPrompt">
+			Game ID
+			<input type="number" id="game_id"></input></br>
+			<input type="radio" name="team" value="1">Capitalist</input></br>
+			<input type="radio" name="team" value="2">Communist</input></br>
+			<button id="attempt_connect" onClick="connect();">Attempt Connection </button>
+		</div>
+		<div id="game_window">
+			<div id="status"> Not connected </div>
+			<div id="Player_info"></div>
+		</div>
+		<div id="teamTable"></div>
+	</div>
+	<div id ="container">
+		<!--<div id ="chat" class= "text">
+			<div id="chatH2">
+			</div>
+		</div>-->
+		<div class="arrow-left"></div>
+		<div class="arrow-right"></div>
+		<div id ="info" class= "text">
+			<div id="infoH2">
+				
+			</div>
+		</div>
+		<ul id="gameMenu">
+			<li onclick="slide(1);slideInfo();">OVERVIEW</li>
+			<li onclick="slide(2);slideInfo();">CITIES</li>
+			<li onclick="slide(3);slideInfo();">ECONOMY</li>
+			<li onclick="slide(4);slideInfo();">MILITARY</li>
+			<li onclick="slide(5);slideInfo();">LDRBRD</li>
+			<li onclick="slide(6);">CLS PNL</li>
+		</ul>
+		<div id="infoSlider">
+			
+		</div>
+	</div>
+	
+<iframe name="hidden" style="display:none;"></iframe>	
+</body>
+</html>

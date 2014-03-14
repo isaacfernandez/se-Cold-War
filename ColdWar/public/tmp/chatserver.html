@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<script src="/socket.io/socket.io.js"></script>
+	<link href='http://fonts.googleapis.com/css?family=Sintony' rel='stylesheet' type='text/css'>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.min.js"></script>
+	<style type="text/css">
+	
+		#div1{
+			float:left;
+			width:100px;
+			border-right:1px solid black;
+			height:500px;
+			padding:10px;
+			overflow:scroll-y;
+		}
+		
+		#div2{
+			float:left;
+			width:300px;
+			height:250px;
+			overflow:scroll-y;
+			padding:10px;
+		}
+		
+		#conversation{
+			font-family: 'Sintony', sans-serif;
+		}
+		
+		#container{
+			height: 500px;
+			overflow: auto;
+			border: solid 2px black;
+		}
+		
+	</style>
+</head>
+<script type="text/javascript">
+  var socket = io.connect('http://localhost:8080');
+  
+  socket.on('connect', function(){
+    socket.emit('adduser', prompt("What's your name?"));
+  });
+
+  socket.on('updatechat', function (username, data) {
+    $('#conversation').append('<b>'+username + ':</b> ' + data + '<br>');
+  });
+
+  socket.on('updateusers', function(data) {
+    $('#users').empty();
+    $.each(data, function(key, value){
+      $('#users').append('<div>' + key + '</div>');
+    });
+  });
+
+  $(function(){
+    $('#datasend').click( function() {
+      var message = $('#data').val();
+      $('#data').val('');
+      socket.emit('sendchat', message);
+    });
+
+    $('#data').keypress(function(e) {
+      if(e.which == 13) {
+        $(this).blur();
+        $('#datasend').focus().click();
+      }
+    });
+  });
+</script>
+<div id="container">
+<div id="div1">
+  <b>USERS</b>
+  <div id="users"></div>
+</div>
+<div id="div2">
+  <div id="conversation"></div>  
+</div>
+</div><input id="data" style="width:99.5%;"/>
+<input type="button" id="datasend" value="send" />
+</html>

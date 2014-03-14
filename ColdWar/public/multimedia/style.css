@@ -1,0 +1,215 @@
+*{
+	margin: 0 auto;
+	padding: 0;
+	-webkit-user-select: none; /* Chrome/Safari */        
+	-moz-user-select: none; /* Firefox */
+	-ms-user-select: none; /* IE10+ */
+}
+
+#loading{
+	z-index: -1;
+	width: 100%;
+	height: 100%;
+	background-color: #000;
+	color: white;
+	font-family: Quicksand, sans-serif;
+	position: absolute;
+}
+
+#video{
+	width: 100%;
+	height: 100%;
+}
+
+#loadingDiv{
+	background-color: #111;
+    position: fixed;
+    top: 20%;
+    left: 50%;
+    margin-top: -38px;
+    margin-left: -380px;
+    color: white;
+    padding: 16px 30px;
+    width: 650px;
+	padding: 20px;
+    line-height: 11px;
+    border: solid 1px lightgrey;
+    cursor: pointer;
+}
+
+#loadingDiv:hover{
+	transition: border-color 1s;
+	border-color: #00ffff;
+}
+
+#container{
+	width: 100%;
+	height: 100%;
+	background-color: #000000;
+}
+
+.text{
+	width: 300px;
+	position: absolute;
+	font-family: Quicksand, sans-serif;
+	padding: 10px;
+}
+
+#chat{
+	height: 75px;
+	margin: 2%;
+	top: 0;
+	background-color: rgba(255,255,255,1);
+}
+
+#info{
+	height: 200px;
+	display: none;
+	margin: 2%;
+	bottom: 0;
+	background-color: rgba(255,255,255,.7);
+}
+
+#infoH2{
+	margin: auto;
+}
+
+#chatH2{
+	margin: auto;
+}
+
+@font-face{
+	font-family: Quicksand;
+	src: url('../multimedia/fonts/Quicksand-Regular.ttf') format('truetype');
+}
+
+#chatBox{
+	width: 200px;
+	height: 200px;
+}
+
+#stats { position: absolute; top:0; left: 0 }
+			#stats #fps { background: transparent !important }
+			#stats #fps #fpsText { color: #eee !important }
+			#stats #fps #fpsGraph { display: none }
+			
+#lobby{
+	font-family: Quicksand, sans-serif;
+	color: white;
+	position: absolute;
+	padding: 25px;
+	margin-left: 70%;
+	margin-top: -200px;
+    border: solid 1px lightgrey;
+    cursor: pointer;
+    background-color: rgba(0,0,0,.7);
+}
+
+#gamer{
+	font-family: Quicksand, sans-serif;
+	color: white;
+	position: absolute;
+	padding: 25px;
+	margin-left: 70%;
+	margin-top: -200px;
+    border: solid 1px lightgrey;
+    cursor: pointer;
+    background-color: rgba(0,0,0,.7);
+}
+
+#gameMenu{
+	display: none;
+	bottom: -100px;
+	left: 0;
+	position: absolute;
+	color: white;
+	height: 25px;
+}
+
+#gameMenu li{
+	display: inline;
+	padding: 10px;
+	border: solid white 1px;
+	border-radius: 6px;
+	border-bottom: none;
+	font-family: 'Quicksand';
+	cursor: pointer;
+}
+
+#gameMenu li:hover{
+	-webkit-transition: border-color 1s;
+	border-color: red;
+}
+
+#infoSlider{
+	background-color: rgba(0,0,0,.7);
+	height: 100%;
+	width: 250px;
+	position: fixed;
+	border: solid white 1px;
+	right: -260px;
+	color: white;
+	font-family: 'Quicksand';
+	padding: 5px;
+}
+
+#attempt_connect{
+	border: white solid 1px;
+	padding: 2px;
+	cursor: pointer;
+	background-color: #474747;
+	color: white;
+}
+
+#attempt_connect:active{
+	color: #0adfff;
+}
+
+.arrow-left{
+	width: 0;
+	height: 0;
+	border-top: 60px solid transparent;
+	border-bottom: 60px solid transparent;
+	border-right:60px solid white;
+	position: absolute;
+	opacity: .8;
+	top: 35%;
+	left: 20px;
+	display: none;
+}
+
+.arrow-right {
+	width: 0; 
+	height: 0; 
+	border-top: 60px solid transparent;
+	border-bottom: 60px solid transparent;
+	border-left: 60px solid white;
+	top: 35%;
+	position: absolute;
+	left: 93%;
+	opacity: .8;
+	display: none;
+}
+
+.arrow-left:active{
+	border-right: 60px solid red;
+}
+
+.arrow-right:active{
+	border-left: 60px solid red;
+}
+
+#teamTable{
+	font-family: Quicksand, sans-serif;
+	color: white;
+	max-height: 300px;
+	position: absolute;
+	padding: 25px;
+	width: 250px;
+	margin-left: -26px;
+	margin-top: -300px;
+    border: solid 1px lightgrey;
+    overflow-y:auto;
+    cursor: pointer;
+    background-color: rgba(0,0,0,.7);
+}
